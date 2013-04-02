@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328221714) do
+ActiveRecord::Schema.define(:version => 20130329024300) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "shout_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "likes", ["shout_id"], :name => "index_likes_on_shout_id"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "shouts", :force => true do |t|
     t.string   "message"
@@ -25,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130328221714) do
     t.string   "password"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "username"
   end
 
 end
